@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Vending_machine_5.Models;
 
-namespace VendingMachine.Services
+namespace Vending_machine_5.Services
 {
     public interface IVending
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VendingMachine.Models
+namespace Vending_machine_5.Models
 {
     public class Snack : Product
     {
