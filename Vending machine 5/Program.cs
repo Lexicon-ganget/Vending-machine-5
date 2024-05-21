@@ -1,4 +1,9 @@
-﻿namespace Vending_machine_5
+﻿using System;
+using Vending_machine_5.Services;
+using Vending_machine_5.Models;
+
+
+namespace Vending_machine_5
 {
     internal class Program
     {
