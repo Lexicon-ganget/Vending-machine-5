@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vending_machine_5
+namespace Vending_machine_5.Models
 {
-    internal class AbstractProduct
+    internal interface IVending
     {
     }
 }
