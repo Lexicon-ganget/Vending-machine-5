@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Vending_machine_5.Services
+namespace VendingMachine.Services
 {
     public interface IVending
     {
