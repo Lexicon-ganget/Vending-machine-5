@@ -1,8 +1,8 @@
 ﻿using System;
-using VendingMachine.Services;
-using VendingMachine.Models;
+using Vending_machine_5.Services;
+using Vending_machine_5.Models;
 
-namespace VendingMachine
+namespace Vending_machine_5
 {
     class Program
     {
