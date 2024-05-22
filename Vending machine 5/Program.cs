@@ -24,10 +24,9 @@ namespace Vending_machine_5
             Console.WriteLine("Vending Machine");
             Console.WriteLine("Enter the selection you want to:");
             Console.WriteLine();
-            Console.WriteLine("Press 1 to show products");
-            Console.WriteLine("Press 2 to insert money");
-            Console.WriteLine("Press 3 to buy a product");
-            Console.WriteLine("Press 4 to end transaction and get change");
+            Console.WriteLine("Press 1 to insert money");
+            Console.WriteLine("Press 2 to buy a product");
+            Console.WriteLine("Press 3 to end transaction and get change");
             Console.WriteLine();
             Console.WriteLine("Press 9 to exit");
             Console.Write("\r\nSelect an option: ");
@@ -36,15 +35,12 @@ namespace Vending_machine_5
             switch (Console.ReadLine())
             {
                 case "1":
-                    ShowProducts();
-                    break;
-                case "2":
                     InsertMoney();
                     break;
-                case "3":
+                case "2":
                     Purchase();
                     break;
-                case "4":
+                case "3":
                     EndTransmition();
                     break;
                 case "9":
@@ -55,18 +51,6 @@ namespace Vending_machine_5
             return true;
         }
 
-        static void ShowProducts()
-        {
-            // Show all products
-            Console.Clear();
-            Console.WriteLine("Available products:");
-            foreach (var product in vendingMachine.ShowAll())
-            {
-                Console.WriteLine(product);
-            }
-            Console.WriteLine("Press any key to return to menu...");
-            Console.ReadKey();
-        }
 
         static void InsertMoney()
         {
@@ -95,8 +79,14 @@ namespace Vending_machine_5
 
         static void Purchase()
         {
-            // Purchase a product
+
+            // Purchase a product and show products
             Console.Clear();
+            Console.WriteLine("Available products:");
+            foreach (var product in vendingMachine.ShowAll())
+            {
+                Console.WriteLine(product);
+            }
             Console.WriteLine("Enter the product Id you want to purchase:");
             if (int.TryParse(Console.ReadLine(), out int productId))
             {
