@@ -1,9 +1,13 @@
-﻿using Vending_machine_5.Services;
+﻿using System;
+using Vending_machine_5.Services;
+using Vending_machine_5.Models;
 
 namespace Vending_machine_5
 {
     internal class Program
     {
+        private static VendingMachineService vendingMachine = new VendingMachineService();
+
         static void Main(string[] args)
         {
             // Menu
@@ -18,7 +22,7 @@ namespace Vending_machine_5
         {
             Console.Clear();
             Console.WriteLine("Vending Machine");
-            Console.WriteLine("Enter the selection you want to");
+            Console.WriteLine("Enter the selection you want to:");
             Console.WriteLine();
             Console.WriteLine("Press 1 to show products");
             Console.WriteLine("Press 2 to insert money");
@@ -54,7 +58,7 @@ namespace Vending_machine_5
         static void ShowProducts()
         {
             // Show all products
-            var vendingMachine = new VendingMachineService();
+            Console.Clear();
             Console.WriteLine("Available products:");
             foreach (var product in vendingMachine.ShowAll())
             {
@@ -67,10 +71,24 @@ namespace Vending_machine_5
         static void InsertMoney()
         {
             // Insert money
-            var vendingMachine = new VendingMachineService();
-            vendingMachine.InsertMoney(100);
-            vendingMachine.InsertMoney(50);
-            Console.WriteLine("Money inserted.");
+            Console.Clear();
+            Console.WriteLine("Insert money (valid denominations: 1, 5, 10, 20, 50, 100, 500, 1000):");
+            if (int.TryParse(Console.ReadLine(), out int amount))
+            {
+                try
+                {
+                    vendingMachine.InsertMoney(amount);
+                    Console.WriteLine($"Money inserted: {amount}kr");
+                }
+                catch (ArgumentException e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a numeric value.");
+            }
             Console.WriteLine("Press any key to return to menu...");
             Console.ReadKey();
         }
@@ -78,10 +96,25 @@ namespace Vending_machine_5
         static void Purchase()
         {
             // Purchase a product
-            var vendingMachine = new VendingMachineService();
-            Console.WriteLine("\nPurchasing product with Id 1:");
-            var product1 = vendingMachine.Purchase(1);
-            Console.WriteLine(product1.Use());
+            Console.Clear();
+            Console.WriteLine("Enter the product Id you want to purchase:");
+            if (int.TryParse(Console.ReadLine(), out int productId))
+            {
+                try
+                {
+                    var product = vendingMachine.Purchase(productId);
+                    Console.WriteLine($"Purchased: {product.Name}");
+                    Console.WriteLine(product.Use());
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid input. Please enter a numeric value.");
+            }
             Console.WriteLine("Press any key to return to menu...");
             Console.ReadKey();
         }
@@ -89,8 +122,7 @@ namespace Vending_machine_5
         static void EndTransmition()
         {
             // End transaction and get change
-            var vendingMachine = new VendingMachineService();
-            Console.WriteLine("\nEnding transaction and getting change:");
+            Console.Clear();
             var change = vendingMachine.EndTransaction();
             Console.WriteLine("Change returned:");
             foreach (var coin in change)
@@ -102,3 +134,4 @@ namespace Vending_machine_5
         }
     }
 }
+
